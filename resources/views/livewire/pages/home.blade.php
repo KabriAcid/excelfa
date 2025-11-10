@@ -22,8 +22,8 @@
                     Empowering young Nigerian footballers with world-class training, academic excellence, and the values to become champions on and off the field.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="/register" class="inline-block px-8 py-3 rounded font-semibold text-lg gradient-accent text-primary-foreground hover:opacity-90 transition-opacity text-center">
-                        Enroll Now
+                    <a href="/enrol" class="inline-block px-8 py-3 rounded font-semibold text-lg gradient-accent text-primary-foreground hover:opacity-90 transition-opacity text-center">
+                        Enrol Now
                     </a>
                     <a href="/about" class="inline-block px-8 py-3 rounded font-semibold text-lg border-2 border-background text-background hover:bg-background hover:text-foreground transition-colors text-center">
                         Learn More
@@ -55,7 +55,7 @@
 
                 @foreach ($achievements as $index => $item)
                 <div
-                    class="shadow-premium hover:shadow-premium-hover transition-all duration-300 animate-scale-in border-0 rounded-lg bg-background p-8 text-center"
+                    class="transition-all duration-300 animate-scale-in border-0 rounded-lg bg-background p-8 text-center"
                     @style("animation-delay: {{ $index * 0.1 }}s")>
                     <div class="w-16 h-16 gradient-hero rounded-full flex items-center justify-center mx-auto mb-4">
                         @if ($index === 0)
@@ -138,8 +138,8 @@
             <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
                 Join Excel Football Academy today and take the first step towards becoming a football champion.
             </p>
-            <a href="/register" class="inline-block px-8 py-3 rounded-md font-semibold text-lg bg-background text-foreground hover:opacity-90 transition-opacity">
-                Start Your Application
+            <a href="/enrol" class="inline-block px-8 py-3 rounded-md font-semibold text-lg bg-background text-foreground hover:opacity-90 transition-opacity">
+                Start Your Enrollment
             </a>
         </div>
     </section>

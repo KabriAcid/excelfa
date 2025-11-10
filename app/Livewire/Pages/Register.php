@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages;
 
+use App\Models\Enrollment;
 use Livewire\Component;
 
 class Register extends Component
@@ -104,17 +105,47 @@ class Register extends Component
             return;
         }
 
-        // Save to database - TODO: Create Registration model and store
-        // Registration::create($validated);
+        try {
+            // Save to database
+            $enrollment = Enrollment::create([
+                'first_name' => $this->firstName,
+                'surname' => $this->surname,
+                'age' => $this->age,
+                'dob_day' => $this->dobDay,
+                'dob_month' => $this->dobMonth,
+                'dob_year' => $this->dobYear,
+                'height' => $this->height,
+                'weight' => $this->weight,
+                'complexion' => $this->complexion,
+                'lga' => $this->lga,
+                'state_of_origin' => $this->stateOfOrigin,
+                'country' => $this->country,
+                'region' => $this->region,
+                'religion' => $this->religion,
+                'tribe' => $this->tribe,
+                'jersey_preference' => $this->jerseyPreference,
+                'role_model' => $this->roleModel,
+                'favourite_team' => $this->favouriteTeam,
+                'favourite_league' => $this->favouriteLeague,
+                'favourite_food' => $this->favouriteFood,
+                'hobby' => $this->hobby,
+                'agreed_to_terms' => $this->agreedToTerms,
+                'status' => 'submitted',
+                'submitted_at' => now(),
+            ]);
 
-        $this->dispatch('notify', message: 'Registration Successful! Your application has been submitted. We\'ll contact you soon.');
+            $this->dispatch('notify', message: 'Registration Successful! Your application has been submitted. We\'ll contact you soon.');
 
-        // Log the data
-        logger()->info('Registration submitted', $validated);
+            // Log the successful submission
+            logger()->info('Enrollment submitted successfully', ['enrollment_id' => $enrollment->id, 'name' => $enrollment->full_name]);
 
-        // Reset form
-        $this->reset();
-        $this->step = 1;
+            // Reset form
+            $this->reset();
+            $this->step = 1;
+        } catch (\Exception $e) {
+            logger()->error('Enrollment submission failed', ['error' => $e->getMessage()]);
+            $this->addError('submit', 'An error occurred while processing your application. Please try again.');
+        }
     }
 
     protected function validateStep()
@@ -151,6 +182,6 @@ class Register extends Component
     #[\Livewire\Attributes\Layout('layouts.public')]
     public function render()
     {
-        return view('livewire.pages.register');
+        return view('livewire.pages.enrol');
     }
 }

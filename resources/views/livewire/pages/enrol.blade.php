@@ -1,5 +1,5 @@
 <div class="min-h-screen pt-20 pb-16 bg-muted">
-    <div class="container mx-auto px-4">
+    <div class="container mt-8 mx-auto px-4">
         <!-- Header -->
         <div class="text-center mb-12 animate-fade-in">
             <h1 class="text-4xl font-bold mb-4">Online Registration</h1>

@@ -59,8 +59,8 @@
                     The Excel Football Academy anthem represents our commitment to excellence, unity, and the continuous pursuit of greatness.
                     Every word embodies the spirit of our athletes and the mission of our academy.
                 </p>
-                <a href="/register" class="inline-block mt-6 px-8 py-3 bg-primary text-primary-foreground rounded-md font-semibold hover:opacity-90 transition-opacity">
-                    Join Us Today
+                <a href="/enrol" class="inline-block mt-6 px-8 py-3 bg-primary text-primary-foreground rounded-md font-semibold hover:opacity-90 transition-opacity">
+                    Enrol Now
                 </a>
             </div>
         </div>

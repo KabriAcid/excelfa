@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Pages;
 
+use App\Models\ContactInquiry;
 use Livewire\Component;
+use Illuminate\Support\Facades\Log;
 
 class Contact extends Component
 {
@@ -22,13 +24,35 @@ class Contact extends Component
     {
         $this->validate();
 
-        // Email would be sent here
-        $this->dispatch('notify', [
-            'title' => 'Success',
-            'message' => 'Your message has been sent. We will contact you soon!',
-        ]);
+        try {
+            // Save to database
+            $inquiry = ContactInquiry::create([
+                'full_name' => $this->name,
+                'email' => $this->email,
+                'subject' => $this->subject,
+                'message' => $this->message,
+                'status' => ContactInquiry::STATUS_NEW,
+                'ip_address' => request()->ip(),
+            ]);
 
-        $this->reset();
+            // TODO: Send email notification to admin
+            // Mail::to('excelfootballa@gmail.com')->send(new ContactInquiryNotification($inquiry));
+
+            // TODO: Send confirmation email to user
+            // Mail::to($this->email)->send(new ContactInquiryConfirmation($inquiry));
+
+            Log::info('Contact inquiry submitted', ['inquiry_id' => $inquiry->id, 'email' => $this->email]);
+
+            $this->dispatch('notify', [
+                'title' => 'Success',
+                'message' => 'Your message has been sent. We will contact you soon!',
+            ]);
+
+            $this->reset();
+        } catch (\Exception $e) {
+            Log::error('Contact inquiry submission failed', ['error' => $e->getMessage()]);
+            $this->addError('submit', 'An error occurred while processing your message. Please try again.');
+        }
     }
 
     #[\Livewire\Attributes\Layout('layouts.public')]

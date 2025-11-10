@@ -41,65 +41,68 @@
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12">What We Offer</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Professional Football Training -->
-                <div class="bg-white shadow-lg hover:shadow-xl transition-all rounded-lg border-0 p-6">
-                    <h3 class="text-xl font-bold flex items-center space-x-3 mb-4">
-                        <span class="text-3xl">🏆</span>
-                        <span>Professional Football Training</span>
-                    </h3>
-                    <ul class="space-y-2 text-muted-foreground">
-                        <li>• Daily intensive training sessions</li>
-                        <li>• Tactical and technical skill development</li>
-                        <li>• Physical conditioning and fitness</li>
-                        <li>• Match experience and tournaments</li>
-                        <li>• Video analysis and performance tracking</li>
-                    </ul>
-                </div>
+                @php
+                $services = [
+                [
+                'icon' => '🏆',
+                'title' => 'Professional Football Training',
+                'items' => [
+                'Daily intensive training sessions',
+                'Tactical and technical skill development',
+                'Physical conditioning and fitness',
+                'Match experience and tournaments',
+                'Video analysis and performance tracking',
+                ]
+                ],
+                [
+                'icon' => '📚',
+                'title' => 'Academic Education',
+                'items' => [
+                'Structured academic curriculum',
+                'English and Mathematics focus',
+                'Computer literacy training',
+                'Tutoring and homework support',
+                'Career guidance and counseling',
+                ]
+                ],
+                [
+                'icon' => '🛡️',
+                'title' => 'Character Development',
+                'items' => [
+                'Discipline and time management',
+                'Leadership skills training',
+                'Teamwork and communication',
+                'Respect and sportsmanship',
+                'Life skills workshops',
+                ]
+                ],
+                [
+                'icon' => '👥',
+                'title' => 'Full Support Services',
+                'items' => [
+                'On-campus accommodation',
+                'Three nutritious meals daily',
+                'Medical care and first aid',
+                'Sports psychology support',
+                'Family communication channels',
+                ]
+                ],
+                ];
+                @endphp
 
-                <!-- Academic Education -->
-                <div class="bg-white shadow-lg hover:shadow-xl transition-all rounded-lg border-0 p-6">
+                @foreach ($services as $service)
+                <div class="bg-white transition-all rounded-lg border-0 p-6">
                     <h3 class="text-xl font-bold flex items-center space-x-3 mb-4">
-                        <span class="text-3xl">📚</span>
-                        <span>Academic Education</span>
+                        <span class="text-3xl">{{ $service['icon'] }}</span>
+                        <span>{{ $service['title'] }}</span>
                     </h3>
                     <ul class="space-y-2 text-muted-foreground">
-                        <li>• Structured academic curriculum</li>
-                        <li>• English and Mathematics focus</li>
-                        <li>• Computer literacy training</li>
-                        <li>• Tutoring and homework support</li>
-                        <li>• Career guidance and counseling</li>
+                        @foreach ($service['items'] as $item)
+                        <li>• {{ $item }}</li>
+                        @endforeach
                     </ul>
                 </div>
-
-                <!-- Character Development -->
-                <div class="bg-white shadow-lg hover:shadow-xl transition-all rounded-lg border-0 p-6">
-                    <h3 class="text-xl font-bold flex items-center space-x-3 mb-4">
-                        <span class="text-3xl">🛡️</span>
-                        <span>Character Development</span>
-                    </h3>
-                    <ul class="space-y-2 text-muted-foreground">
-                        <li>• Discipline and time management</li>
-                        <li>• Leadership skills training</li>
-                        <li>• Teamwork and communication</li>
-                        <li>• Respect and sportsmanship</li>
-                        <li>• Life skills workshops</li>
-                    </ul>
-                </div>
-
-                <!-- Full Support Services -->
-                <div class="bg-white shadow-lg hover:shadow-xl transition-all rounded-lg border-0 p-6">
-                    <h3 class="text-xl font-bold flex items-center space-x-3 mb-4">
-                        <span class="text-3xl">👥</span>
-                        <span>Full Support Services</span>
-                    </h3>
-                    <ul class="space-y-2 text-muted-foreground">
-                        <li>• On-campus accommodation</li>
-                        <li>• Three nutritious meals daily</li>
-                        <li>• Medical care and first aid</li>
-                        <li>• Sports psychology support</li>
-                        <li>• Family communication channels</li>
-                    </ul>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -109,26 +112,33 @@
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12">Our Team Colors</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <!-- Blue -->
-                <div class="bg-white shadow-lg rounded-lg border-0 p-6 text-center">
-                    <div class="w-20 h-20 bg-blue-600 rounded-full mx-auto mb-4"></div>
-                    <h3 class="font-bold text-xl mb-2">Blue</h3>
-                    <p class="text-muted-foreground">Represents trust, loyalty, and the vast sky of possibilities</p>
-                </div>
+                @php
+                $colors = [
+                [
+                'name' => 'Blue',
+                'bgClass' => 'bg-blue-600',
+                'description' => 'Represents trust, loyalty, and the vast sky of possibilities',
+                ],
+                [
+                'name' => 'Orange',
+                'bgClass' => 'bg-orange-500',
+                'description' => 'Symbolizes energy, enthusiasm, and the burning passion to succeed',
+                ],
+                [
+                'name' => 'White',
+                'bgClass' => 'bg-white border-4 border-gray-800',
+                'description' => 'Embodies purity, excellence, and the pursuit of perfection',
+                ],
+                ];
+                @endphp
 
-                <!-- Orange -->
+                @foreach ($colors as $color)
                 <div class="bg-white shadow-lg rounded-lg border-0 p-6 text-center">
-                    <div class="w-20 h-20 bg-orange-500 rounded-full mx-auto mb-4"></div>
-                    <h3 class="font-bold text-xl mb-2">Orange</h3>
-                    <p class="text-muted-foreground">Symbolizes energy, enthusiasm, and the burning passion to succeed</p>
+                    <div class="w-20 h-20 {{ $color['bgClass'] }} rounded-full mx-auto mb-4"></div>
+                    <h3 class="font-bold text-xl mb-2">{{ $color['name'] }}</h3>
+                    <p class="text-muted-foreground">{{ $color['description'] }}</p>
                 </div>
-
-                <!-- White -->
-                <div class="bg-white shadow-lg rounded-lg border-0 p-6 text-center">
-                    <div class="w-20 h-20 bg-white border-4 border-gray-800 rounded-full mx-auto mb-4"></div>
-                    <h3 class="font-bold text-xl mb-2">White</h3>
-                    <p class="text-muted-foreground">Embodies purity, excellence, and the pursuit of perfection</p>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -140,26 +150,37 @@
                 <h2 class="text-4xl font-bold text-center mb-8">Our Code of Conduct</h2>
                 <div class="bg-white shadow-lg rounded-lg border-0 p-8">
                     <div class="space-y-4 text-lg">
+                        @php
+                        $codOfConduct = [
+                        [
+                        'title' => 'Discipline',
+                        'description' => 'Punctuality, respect for coaches and teammates, and adherence to training schedules',
+                        ],
+                        [
+                        'title' => 'Respect',
+                        'description' => 'Treat everyone with dignity regardless of background, skill level, or position',
+                        ],
+                        [
+                        'title' => 'Excellence',
+                        'description' => 'Give your best effort in every training session, match, and classroom',
+                        ],
+                        [
+                        'title' => 'Teamwork',
+                        'description' => 'Support your teammates, celebrate together, and grow as one unit',
+                        ],
+                        [
+                        'title' => 'Integrity',
+                        'description' => 'Play fair, be honest, and maintain the highest standards of sportsmanship',
+                        ],
+                        ];
+                        @endphp
+
+                        @foreach ($codOfConduct as $conduct)
                         <p class="flex items-start space-x-3">
                             <span class="text-blue-600 font-bold">•</span>
-                            <span><strong>Discipline:</strong> Punctuality, respect for coaches and teammates, and adherence to training schedules</span>
+                            <span><strong>{{ $conduct['title'] }}:</strong> {{ $conduct['description'] }}</span>
                         </p>
-                        <p class="flex items-start space-x-3">
-                            <span class="text-blue-600 font-bold">•</span>
-                            <span><strong>Respect:</strong> Treat everyone with dignity regardless of background, skill level, or position</span>
-                        </p>
-                        <p class="flex items-start space-x-3">
-                            <span class="text-blue-600 font-bold">•</span>
-                            <span><strong>Excellence:</strong> Give your best effort in every training session, match, and classroom</span>
-                        </p>
-                        <p class="flex items-start space-x-3">
-                            <span class="text-blue-600 font-bold">•</span>
-                            <span><strong>Teamwork:</strong> Support your teammates, celebrate together, and grow as one unit</span>
-                        </p>
-                        <p class="flex items-start space-x-3">
-                            <span class="text-blue-600 font-bold">•</span>
-                            <span><strong>Integrity:</strong> Play fair, be honest, and maintain the highest standards of sportsmanship</span>
-                        </p>
+                        @endforeach
                     </div>
                 </div>
             </div>

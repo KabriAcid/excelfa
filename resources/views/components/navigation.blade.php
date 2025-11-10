@@ -1,4 +1,4 @@
-<nav class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-premium">
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-20">
             <!-- Logo -->
@@ -21,8 +21,8 @@
                 <a href="/admission" class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('admission') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     Admission
                 </a>
-                <a href="/register" class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('register') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
-                    Register
+                <a href="/enrol" class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('enrol') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                    Enrol
                 </a>
                 <a href="/gallery" class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('gallery') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     Gallery
@@ -62,8 +62,8 @@
                 <a href="/admission" @click="open = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('admission') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     Admission
                 </a>
-                <a href="/register" @click="open = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('register') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
-                    Register
+                <a href="/enrol" @click="open = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('enrol') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                    Enrol
                 </a>
                 <a href="/gallery" @click="open = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('gallery') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     Gallery

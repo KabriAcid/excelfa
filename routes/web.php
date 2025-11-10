@@ -15,7 +15,7 @@ Route::get('/', Home::class)->name('home');
 Route::get('/about', About::class)->name('about');
 Route::get('/admission', Admission::class)->name('admission');
 Route::get('/contact', Contact::class)->name('contact');
-Route::get('/register', Register::class)->name('register');
+Route::get('/enrol', Register::class)->name('enrol');
 Route::get('/gallery', Gallery::class)->name('gallery');
 Route::get('/anthem', Anthem::class)->name('anthem');
 
