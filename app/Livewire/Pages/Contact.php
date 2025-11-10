@@ -58,6 +58,45 @@ class Contact extends Component
     #[\Livewire\Attributes\Layout('layouts.public')]
     public function render()
     {
-        return view('livewire.pages.contact');
+        $contactInfo = [
+            'location' => [
+                'icon' => '📍',
+                'title' => 'Our Location',
+                'details' => [
+                    'Excel Football Academy',
+                    'Jalingo, Taraba State',
+                    'Nigeria',
+                ],
+            ],
+            'phone' => [
+                'icon' => '📞',
+                'title' => 'Phone',
+                'details' => [
+                    '+234 803 456 7890',
+                    '+234 809 123 4567',
+                ],
+            ],
+            'email' => [
+                'icon' => '✉️',
+                'title' => 'Email',
+                'details' => [
+                    'info@excelfa.com',
+                    'admissions@excelfa.com',
+                ],
+            ],
+            'hours' => [
+                'icon' => '🕐',
+                'title' => 'Office Hours',
+                'details' => [
+                    'Monday - Friday: 8:00 AM - 5:00 PM',
+                    'Saturday: 9:00 AM - 2:00 PM',
+                    'Sunday: Closed',
+                ],
+            ],
+        ];
+
+        return view('livewire.pages.contact', [
+            'contactInfo' => $contactInfo,
+        ]);
     }
 }

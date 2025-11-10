@@ -1,4 +1,4 @@
-<nav class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-premium">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-premium" x-data="{ mobileMenuOpen: false }">
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-20">
             <!-- Logo -->
@@ -47,45 +47,55 @@
 
             <!-- Mobile Menu Button -->
             <button
-                x-data="{ open: false }"
-                @click="open = !open"
-                class="md:hidden p-2 hover:bg-muted rounded-md"
-                aria-label="Toggle menu">
-                <svg x-show="!open" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                @click="mobileMenuOpen = !mobileMenuOpen"
+                class="md:hidden p-2 hover:bg-muted rounded-md transition-colors"
+                aria-label="Toggle menu"
+                :aria-expanded="mobileMenuOpen">
+                <svg x-show="!mobileMenuOpen" class="h-6 w-6 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-                <svg x-show="open" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg x-show="mobileMenuOpen" x-cloak class="h-6 w-6 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
         </div>
 
         <!-- Mobile Navigation -->
-        <div x-data="{ open: false }" x-show="open" class="md:hidden pb-4 animate-fade-in">
-            <div class="flex flex-col space-y-2">
-                <a href="/" @click="open = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('/') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+        <div 
+            x-show="mobileMenuOpen" 
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-2"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-2"
+            @click.away="mobileMenuOpen = false"
+            x-cloak
+            class="md:hidden pb-4 border-t border-border mt-2">
+            <div class="flex flex-col space-y-1 pt-2">
+                <a href="/" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('/') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     Home
                 </a>
-                <a href="/about" @click="open = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('about') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                <a href="/about" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('about') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     About Us
                 </a>
-                <a href="/admission" @click="open = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('admission') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                <a href="/admission" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('admission') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     Admission
                 </a>
-                <a href="/gallery" @click="open = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('gallery') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                <a href="/gallery" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('gallery') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     Gallery
                 </a>
-                <a href="/contact" @click="open = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('contact') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                <a href="/contact" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('contact') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     Contact
                 </a>
-                <a href="/anthem" @click="open = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('anthem') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                <a href="/anthem" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('anthem') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     Anthem
                 </a>
                 <div class="border-t border-border pt-3 mt-3 flex flex-col space-y-2">
-                    <a href="/login" @click="open = false" class="px-4 py-3 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors border border-border text-center">
+                    <a href="/login" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors border border-border text-center">
                         Login
                     </a>
-                    <a href="/enrol" @click="open = false" class="px-4 py-3 rounded-md text-sm font-semibold text-white bg-primary hover:bg-primary/90 transition-all shadow-premium text-center">
+                    <a href="/enrol" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-semibold text-white bg-primary hover:bg-primary/90 transition-all shadow-premium text-center">
                         Enrol Now
                     </a>
                 </div>
