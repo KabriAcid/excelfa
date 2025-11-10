@@ -2,6 +2,200 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 0 0% 9%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 9%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 9%;
+
+        /* Football Blue - Primary brand color - Premium deeper shade */
+        --primary: 217 85% 52%;
+        --primary-foreground: 0 0% 100%;
+
+        /* Orange Accent - Energy and passion - Premium vibrant */
+        --secondary: 24 90% 50%;
+        --secondary-foreground: 0 0% 100%;
+
+        --muted: 0 0% 96%;
+        --muted-foreground: 0 0% 45%;
+
+        --accent: 217 91% 60%;
+        --accent-foreground: 0 0% 100%;
+
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 100%;
+
+        --border: 0 0% 90%;
+        --input: 0 0% 90%;
+        --ring: 217 91% 60%;
+
+        --radius: 0.75rem;
+
+        /* Premium Athletic Gradients */
+        --gradient-hero: linear-gradient(
+            135deg,
+            hsl(217 85% 52%) 0%,
+            hsl(217 85% 38%) 100%
+        );
+        --gradient-accent: linear-gradient(
+            135deg,
+            hsl(24 90% 50%) 0%,
+            hsl(24 90% 40%) 100%
+        );
+
+        /* Premium Multi-layered Shadows */
+        --shadow-premium: 0 2px 4px rgba(0, 0, 0, 0.05),
+            0 8px 16px rgba(0, 0, 0, 0.08);
+        --shadow-premium-lg: 0 4px 8px rgba(0, 0, 0, 0.06),
+            0 12px 24px rgba(0, 0, 0, 0.1), 0 20px 40px rgba(0, 0, 0, 0.08);
+        --shadow-premium-hover: 0 8px 16px rgba(0, 0, 0, 0.08),
+            0 16px 32px rgba(0, 0, 0, 0.12), 0 24px 48px rgba(0, 0, 0, 0.1);
+
+        --sidebar-background: 0 0% 98%;
+        --sidebar-foreground: 0 0% 9%;
+        --sidebar-primary: 217 91% 60%;
+        --sidebar-primary-foreground: 0 0% 100%;
+        --sidebar-accent: 0 0% 96%;
+        --sidebar-accent-foreground: 0 0% 9%;
+        --sidebar-border: 0 0% 90%;
+        --sidebar-ring: 217 91% 60%;
+    }
+
+    .dark {
+        --background: 0 0% 9%;
+        --foreground: 0 0% 98%;
+
+        --card: 0 0% 12%;
+        --card-foreground: 0 0% 98%;
+
+        --popover: 0 0% 12%;
+        --popover-foreground: 0 0% 98%;
+
+        --primary: 217 91% 60%;
+        --primary-foreground: 0 0% 100%;
+
+        --secondary: 24 95% 53%;
+        --secondary-foreground: 0 0% 100%;
+
+        --muted: 0 0% 15%;
+        --muted-foreground: 0 0% 65%;
+
+        --accent: 217 91% 60%;
+        --accent-foreground: 0 0% 100%;
+
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 100%;
+
+        --border: 0 0% 20%;
+        --input: 0 0% 20%;
+        --ring: 217 91% 60%;
+
+        --sidebar-background: 0 0% 9%;
+        --sidebar-foreground: 0 0% 98%;
+        --sidebar-primary: 217 91% 60%;
+        --sidebar-primary-foreground: 0 0% 100%;
+        --sidebar-accent: 0 0% 15%;
+        --sidebar-accent-foreground: 0 0% 98%;
+        --sidebar-border: 0 0% 20%;
+        --sidebar-ring: 217 91% 60%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground font-sans antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-bold tracking-tight;
+    }
+}
+
+@layer utilities {
+    .gradient-hero {
+        background: var(--gradient-hero);
+    }
+
+    .gradient-accent {
+        background: var(--gradient-accent);
+    }
+
+    .shadow-premium {
+        box-shadow: var(--shadow-premium);
+    }
+
+    .shadow-premium-lg {
+        box-shadow: var(--shadow-premium-lg);
+    }
+
+    .shadow-premium-hover {
+        box-shadow: var(--shadow-premium-hover);
+    }
+
+    .animate-fade-in {
+        animation: fade-in 0.6s ease-out forwards;
+    }
+
+    .animate-slide-up {
+        animation: slide-up 0.6s ease-out forwards;
+    }
+
+    .animate-scale-in {
+        animation: scale-in 0.4s ease-out forwards;
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slide-up {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes scale-in {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+}
+
 /* EFA orange/blue loading bar */
 [x-cloak] {
     display: none !important;
@@ -9,5 +203,9 @@
 
 .htmx-request .htmx-indicator,
 [wire\:loading] {
-    background: linear-gradient(to right, #f97316, #1e40af) !important;
+    background: linear-gradient(
+        to right,
+        hsl(var(--secondary)),
+        hsl(var(--primary))
+    ) !important;
 }
