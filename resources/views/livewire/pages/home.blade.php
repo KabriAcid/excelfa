@@ -90,6 +90,61 @@
         </div>
     </section>
 
+    <!-- Gallery Section -->
+    <section class="py-20 bg-muted">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl font-bold mb-4">Gallery</h2>
+                <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                    Witness the passion, dedication, and excellence demonstrated by our athletes in action.
+                </p>
+            </div>
+
+            <!-- Masonry Grid Gallery -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-max gap-4">
+                @php
+                // Gallery items with random grid sizes (using col-span and row-span classes)
+                $galleryItems = [
+                ['image' => 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&h=400&fit=crop', 'alt' => 'Football Training', 'category' => 'Training', 'size' => 'lg', 'cols' => 'lg:col-span-2', 'rows' => 'lg:row-span-2'],
+                ['image' => 'https://images.unsplash.com/photo-1430549387789-4c1017266635?w=400&h=400&fit=crop', 'alt' => 'Team Spirit', 'category' => 'Team', 'size' => 'md', 'cols' => '', 'rows' => ''],
+                ['image' => 'https://images.unsplash.com/photo-1489749798305-4fea3ba63d60?w=400&h=400&fit=crop', 'alt' => 'Youth Football', 'category' => 'Youth', 'size' => 'md', 'cols' => '', 'rows' => ''],
+                ['image' => 'https://images.unsplash.com/photo-1517148814924-adebbc3be195?w=400&h=600&fit=crop', 'alt' => 'Training Drill', 'category' => 'Training', 'size' => 'lg', 'cols' => 'lg:col-span-1', 'rows' => 'lg:row-span-2'],
+                ['image' => 'https://images.unsplash.com/photo-1552134680-7aae4d00a0f9?w=600&h=400&fit=crop', 'alt' => 'Match Day', 'category' => 'Match', 'size' => 'lg', 'cols' => 'lg:col-span-2', 'rows' => ''],
+                ['image' => 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400&h=400&fit=crop', 'alt' => 'Player Focus', 'category' => 'Training', 'size' => 'md', 'cols' => '', 'rows' => ''],
+                ['image' => 'https://images.unsplash.com/photo-1505666287802-931dc604a649?w=400&h=400&fit=crop', 'alt' => 'Goal Celebration', 'category' => 'Match', 'size' => 'md', 'cols' => '', 'rows' => ''],
+                ['image' => 'https://images.unsplash.com/photo-1579952363873-27f3bade9e55?w=600&h=500&fit=crop', 'alt' => 'Academy Facilities', 'category' => 'Facilities', 'size' => 'lg', 'cols' => 'lg:col-span-2', 'rows' => ''],
+                ];
+                @endphp
+
+                @foreach ($galleryItems as $index => $item)
+                <div class="group relative overflow-hidden rounded-lg shadow-premium hover:shadow-premium-lg transition-all duration-300 {{ $item['cols'] }} {{ $item['rows'] }} animate-scale-in"
+                    @style("animation-delay: {{ ($index % 4) * 0.1 }}s")>
+                    <!-- Image -->
+                    <img
+                        src="{{ $item['image'] }}"
+                        alt="{{ $item['alt'] }}"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-end justify-end p-4">
+                        <div class="text-right">
+                            <p class="text-secondary font-semibold text-sm mb-1">{{ $item['category'] }}</p>
+                            <p class="text-background text-sm font-medium">{{ $item['alt'] }}</p>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+
+            <!-- View All Gallery Button -->
+            <div class="text-center mt-16">
+                <a href="/gallery" class="inline-block px-8 py-3 rounded-lg font-semibold text-lg gradient-hero text-primary-foreground hover:opacity-90 transition-opacity">
+                    View Full Gallery
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- What We Offer -->
     <section class="py-20">
         <div class="container mx-auto px-4">
