@@ -9,6 +9,12 @@ use App\Livewire\Pages\Register;
 use App\Livewire\Pages\Gallery;
 use App\Livewire\Pages\Anthem;
 use App\Livewire\Pages\NotFound;
+use App\Livewire\Admin\DashboardHome;
+use App\Livewire\Admin\Enrollments;
+use App\Livewire\Admin\Inquiries;
+use App\Livewire\Admin\AdminGallery;
+use App\Livewire\Admin\Users;
+use App\Livewire\Admin\Settings;
 
 // Public Routes
 Route::get('/', Home::class)->name('home');
@@ -29,5 +35,15 @@ Route::view('dashboard', 'dashboard')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+// Admin Routes
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', DashboardHome::class)->name('dashboard');
+    Route::get('/enrollments', Enrollments::class)->name('enrollments');
+    Route::get('/inquiries', Inquiries::class)->name('inquiries');
+    Route::get('/gallery', AdminGallery::class)->name('gallery');
+    Route::get('/users', Users::class)->name('users');
+    Route::get('/settings', Settings::class)->name('settings');
+});
 
 require __DIR__ . '/auth.php';
