@@ -2,7 +2,7 @@
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-20">
             <!-- Logo -->
-            <a href="/" class="flex items-center space-x-3">
+            <a href="/" wire:navigate class="flex items-center space-x-3">
                 <x-logo class="w-12 h-12" />
                 <div class="hidden md:block">
                     <div class="font-bold text-lg text-foreground tracking-tight">Excel Football Academy</div>
@@ -14,32 +14,32 @@
             <div class="hidden md:flex items-center justify-between flex-1 px-8">
                 <!-- Main Menu -->
                 <div class="flex items-center space-x-1">
-                    <a href="/" class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('/') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                    <a href="/" wire:navigate class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('/') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                         Home
                     </a>
-                    <a href="/about" class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('about') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                    <a href="/about" wire:navigate class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('about') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                         About Us
                     </a>
-                    <a href="/admission" class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('admission') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                    <a href="/admission" wire:navigate class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('admission') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                         Admission
                     </a>
-                    <a href="/gallery" class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('gallery') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                    <a href="/gallery" wire:navigate class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('gallery') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                         Gallery
                     </a>
-                    <a href="/contact" class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('contact') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                    <a href="/contact" wire:navigate class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('contact') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                         Contact
                     </a>
-                    <a href="/anthem" class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('anthem') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                    <a href="/anthem" wire:navigate class="px-4 py-2 rounded-md text-sm font-medium transition-colors {{ request()->is('anthem') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                         Anthem
                     </a>
                 </div>
 
                 <!-- Action Buttons -->
                 <div class="flex items-center space-x-3">
-                    <a href="/login" class="px-4 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors border border-border">
+                    <a href="/login" wire:navigate class="px-4 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors border border-border">
                         Login
                     </a>
-                    <a href="/enrol" class="px-6 py-2 rounded-md text-sm font-semibold text-white bg-primary hover:bg-primary/90 transition-all shadow-premium">
+                    <a href="/enrol" wire:navigate class="px-6 py-2 rounded-md text-sm font-semibold text-white bg-primary hover:bg-primary/90 transition-all shadow-premium">
                         Enrol Now
                     </a>
                 </div>
@@ -73,29 +73,29 @@
             x-cloak
             class="md:hidden pb-4 border-t border-border mt-2">
             <div class="flex flex-col space-y-1 pt-2">
-                <a href="/" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('/') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                <a href="/" wire:navigate @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('/') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     Home
                 </a>
-                <a href="/about" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('about') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                <a href="/about" wire:navigate @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('about') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     About Us
                 </a>
-                <a href="/admission" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('admission') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                <a href="/admission" wire:navigate @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('admission') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     Admission
                 </a>
-                <a href="/gallery" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('gallery') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                <a href="/gallery" wire:navigate @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('gallery') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     Gallery
                 </a>
-                <a href="/contact" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('contact') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                <a href="/contact" wire:navigate @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('contact') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     Contact
                 </a>
-                <a href="/anthem" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('anthem') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
+                <a href="/anthem" wire:navigate @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium transition-colors {{ request()->is('anthem') ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted' }}">
                     Anthem
                 </a>
                 <div class="border-t border-border pt-3 mt-3 flex flex-col space-y-2">
-                    <a href="/login" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors border border-border text-center">
+                    <a href="/login" wire:navigate @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors border border-border text-center">
                         Login
                     </a>
-                    <a href="/enrol" @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-semibold text-white bg-primary hover:bg-primary/90 transition-all shadow-premium text-center">
+                    <a href="/enrol" wire:navigate @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-semibold text-white bg-primary hover:bg-primary/90 transition-all shadow-premium text-center">
                         Enrol Now
                     </a>
                 </div>
