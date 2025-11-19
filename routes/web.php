@@ -19,6 +19,18 @@ use App\Livewire\Admin\Settings;
 // Authentication Routes (Must be registered before other routes)
 require __DIR__ . '/auth.php';
 
+// Logout route: use the Logout action to clear session and redirect to login
+use App\Livewire\Actions\Logout as LogoutAction;
+
+Route::get('/logout', function () {
+    // Clear session and authentication
+    \Illuminate\Support\Facades\Auth::logout();
+    \Illuminate\Support\Facades\Session::flush();
+
+    // Redirect to login page
+    return redirect('/login');
+});
+
 // Public Routes
 Route::get('/', Home::class)->name('home');
 Route::get('/about', About::class)->name('about');
