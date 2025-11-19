@@ -22,10 +22,10 @@
                     Empowering young Nigerian footballers with world-class training, academic excellence, and the values to become champions on and off the field.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="/enrol" class="inline-block px-8 py-3 rounded font-semibold text-lg gradient-accent text-primary-foreground hover:opacity-90 transition-opacity text-center">
+                    <a href="/enrol" wire:navigate class="inline-block px-8 py-3 rounded font-semibold text-lg gradient-accent text-primary-foreground hover:opacity-90 transition-opacity text-center">
                         Enrol Now
                     </a>
-                    <a href="/about" class="inline-block px-8 py-3 rounded font-semibold text-lg border-2 border-background text-background hover:bg-background hover:text-foreground transition-colors text-center">
+                    <a href="/about" wire:navigate class="inline-block px-8 py-3 rounded font-semibold text-lg border-2 border-background text-background hover:bg-background hover:text-foreground transition-colors text-center">
                         Learn More
                     </a>
                 </div>
@@ -138,7 +138,7 @@
 
             <!-- View All Gallery Button -->
             <div class="text-center mt-16">
-                <a href="/gallery" class="inline-block px-8 py-3 rounded-lg font-semibold text-lg gradient-hero text-primary-foreground hover:opacity-90 transition-opacity">
+                <a href="/gallery" wire:navigate class="inline-block px-8 py-3 rounded-lg font-semibold text-lg gradient-hero text-primary-foreground hover:opacity-90 transition-opacity">
                     View Full Gallery
                 </a>
             </div>
@@ -173,7 +173,7 @@
                         </li>
                         @endforeach
                     </ul>
-                    <a href="/admission" class="inline-block mt-8 px-8 py-3 rounded-md font-semibold text-lg gradient-hero text-primary-foreground hover:opacity-90 transition-opacity">
+                    <a href="/admission" wire:navigate class="inline-block mt-8 px-8 py-3 rounded-md font-semibold text-lg gradient-hero text-primary-foreground hover:opacity-90 transition-opacity">
                         View Admission Requirements
                     </a>
                 </div>
@@ -193,7 +193,7 @@
             <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
                 Join Excel Football Academy today and take the first step towards becoming a football champion.
             </p>
-            <a href="/enrol" class="inline-block px-8 py-3 rounded-md font-semibold text-lg bg-background text-foreground hover:opacity-90 transition-opacity">
+            <a href="/enrol" wire:navigate class="inline-block px-8 py-3 rounded-md font-semibold text-lg bg-background text-foreground hover:opacity-90 transition-opacity">
                 Start Your Enrollment
             </a>
         </div>

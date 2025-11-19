@@ -200,7 +200,7 @@
             <p class="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
                 Take the first step towards excellence. Complete your enrollment today.
             </p>
-            <a href="/enrol" class="inline-block bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-3 px-8 rounded-lg hover:shadow-lg transition">
+            <a href="/enrol" wire:navigate class="inline-block bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-3 px-8 rounded-lg hover:shadow-lg transition">
                 Start Your Enrollment
             </a>
         </div>

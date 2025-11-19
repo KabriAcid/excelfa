@@ -113,7 +113,7 @@
                             </svg>
                             <span>Height (cm) <span class="text-red-500">*</span></span>
                         </label>
-                        <input type="number" wire:model="height" placeholder="e.g., 165" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="number" id="height" wire:model="height" placeholder="e.g., 165" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
                         @error('height') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                     <div>
