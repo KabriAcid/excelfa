@@ -10,7 +10,7 @@ class GalleryImage extends Model
     /** @use HasFactory<\Database\Factories\GalleryImageFactory> */
     use HasFactory;
 
-    protected $table = 'gallery_images';
+    protected $table = 'gallery';
 
     protected $fillable = [
         'title',
