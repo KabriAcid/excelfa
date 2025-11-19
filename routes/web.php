@@ -40,8 +40,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 // User Routes (For non-admin authenticated users)
 Route::middleware(['auth', 'verified'])->group(function () {
-    // User dashboard (non-admin)
-    Route::get('/dashboard', \App\Livewire\Pages\Dashboard::class)->name('dashboard');
+    // User dashboard — render admin dashboard for admin users (middleware protects it)
+    Route::get('/dashboard', DashboardHome::class)
+        ->middleware(['auth', 'admin'])
+        ->name('dashboard');
 
     Route::get('/profile', function () {
         return view('profile');

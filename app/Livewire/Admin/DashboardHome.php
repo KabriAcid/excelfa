@@ -7,8 +7,10 @@ use App\Models\ContactInquiry;
 use App\Models\GalleryImage;
 use App\Models\User;
 use Livewire\Component;
+use Livewire\Attributes\Layout;
 use Carbon\Carbon;
 
+#[Layout('layouts.dashboard')]
 class DashboardHome extends Component
 {
     public function render()

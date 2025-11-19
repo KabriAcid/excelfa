@@ -29,7 +29,7 @@ new #[Layout('layouts.guest')] class extends Component
         if (Auth::check()) {
             $userRole = Auth::user()->role ?? 'user';
             $redirectRoute = match ($userRole) {
-                'admin' => 'admin.dashboard',
+                'admin' => 'dashboard',
                 'parent' => 'dashboard',
                 'coach' => 'dashboard',
                 default => 'dashboard',

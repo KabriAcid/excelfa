@@ -16,8 +16,13 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if user is authenticated and has admin role
-        if (!Auth::check() || Auth::user()->role !== 'admin') {
+        // If user is not authenticated, redirect to login (preserve intended URL)
+        if (!Auth::check()) {
+            return redirect()->guest(route('login'));
+        }
+
+        // If authenticated but not an admin, deny access
+        if (Auth::user()->role !== 'admin') {
             abort(403, 'Unauthorized access. Admin privileges required.');
         }
 
