@@ -10,12 +10,14 @@ class Contact extends Component
 {
     public string $name = '';
     public string $email = '';
+    public string $phone = '';
     public string $subject = '';
     public string $message = '';
 
     protected $rules = [
         'name' => 'required|string|max:255',
         'email' => 'required|email',
+        'phone' => 'required|min:10',
         'subject' => 'required|string|max:255',
         'message' => 'required|string|min:10',
     ];
@@ -29,6 +31,7 @@ class Contact extends Component
             $inquiry = ContactInquiry::create([
                 'full_name' => $this->name,
                 'email' => $this->email,
+                'phone' => $this->phone,
                 'subject' => $this->subject,
                 'message' => $this->message,
                 'status' => ContactInquiry::STATUS_NEW,

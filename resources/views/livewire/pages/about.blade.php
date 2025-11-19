@@ -14,8 +14,7 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="animate-fade-in">
-                    <img
-                        src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&h=400&fit=crop"
+                    <img src="{{ asset('images/team-photo.jpg') }}"
                         alt="EFA Team"
                         class="rounded-lg shadow-lg w-full" />
                 </div>

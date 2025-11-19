@@ -79,6 +79,7 @@
                                     </div>
                                     <input
                                         type="tel"
+                                        id="phone_number"
                                         wire:model="phone"
                                         class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                                         placeholder="+234 800 000 0000" />
