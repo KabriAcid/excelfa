@@ -67,9 +67,13 @@
                             @endif
                         </div>
 
-                        <div class="pt-2">
-                            <x-primary-button>{{ __('Save Changes') }}</x-primary-button>
-                            <x-action-message class="text-green-600 dark:text-green-400 text-sm ml-4" on="profile-updated">
+                        <div class="pt-4 flex gap-3">
+                            <button 
+                                type="submit"
+                                class="px-4 py-2 text-white bg-primary hover:bg-primary/90 rounded-lg font-medium transition-colors">
+                                {{ __('Save Changes') }}
+                            </button>
+                            <x-action-message class="text-green-600 dark:text-green-400 text-sm inline-block" on="profile-updated">
                                 {{ __('Saved successfully.') }}
                             </x-action-message>
                         </div>
@@ -129,9 +133,13 @@
                             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-1" />
                         </div>
 
-                        <div class="pt-2">
-                            <x-primary-button>{{ __('Update Password') }}</x-primary-button>
-                            <x-action-message class="text-green-600 dark:text-green-400 text-sm ml-4" on="password-updated">
+                        <div class="pt-4 flex gap-3">
+                            <button 
+                                type="submit"
+                                class="px-4 py-2 text-white bg-primary hover:bg-primary/90 rounded-lg font-medium transition-colors">
+                                {{ __('Update Password') }}
+                            </button>
+                            <x-action-message class="text-green-600 dark:text-green-400 text-sm inline-block" on="password-updated">
                                 {{ __('Saved successfully.') }}
                             </x-action-message>
                         </div>
@@ -152,10 +160,13 @@
                     </header>
 
                     <div class="pt-2">
-                        <x-danger-button
+                        <button
                             x-data=""
                             x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-                        >{{ __('Delete Account') }}</x-danger-button>
+                            type="button"
+                            class="px-4 py-2 text-white bg-red-600 hover:bg-red-700 rounded-lg font-medium transition-colors">
+                            {{ __('Delete Account') }}
+                        </button>
                     </div>
 
                     <x-modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable>
@@ -183,13 +194,18 @@
                             </div>
 
                             <div class="mt-6 flex justify-end gap-3">
-                                <x-secondary-button x-on:click="$dispatch('close')">
+                                <button 
+                                    x-on:click="$dispatch('close')"
+                                    type="button"
+                                    class="px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg font-medium transition-colors">
                                     {{ __('Cancel') }}
-                                </x-secondary-button>
+                                </button>
 
-                                <x-danger-button>
+                                <button
+                                    type="submit"
+                                    class="px-4 py-2 text-white bg-red-600 hover:bg-red-700 rounded-lg font-medium transition-colors">
                                     {{ __('Delete Account') }}
-                                </x-danger-button>
+                                </button>
                             </div>
                         </form>
                     </x-modal>

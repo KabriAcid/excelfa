@@ -65,7 +65,7 @@ new #[Layout('layouts.guest')] class extends Component
                             wire:model="email"
                             id="email"
                             placeholder="Email address"
-                            class="w-full pl-10 pr-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all bg-background text-foreground placeholder-muted-foreground"
+                            class="w-full pl-10 pr-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary transition-all bg-background text-foreground placeholder-muted-foreground"
                             required
                             autofocus
                             autocomplete="email" />

@@ -31,7 +31,7 @@
                         wire:model="title"
                         type="text"
                         placeholder="Enter image title"
-                        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent">
                     @error('title') <span class="text-red-600 text-sm mt-1">{{ $message }}</span> @enderror
                 </div>
 
@@ -40,7 +40,7 @@
                     <label class="block text-sm font-medium text-gray-900 dark:text-white mb-2">Category</label>
                     <select 
                         wire:model="category"
-                        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent">
                         @foreach($categories as $cat)
                         <option value="{{ $cat }}">{{ ucfirst($cat) }}</option>
                         @endforeach
@@ -55,7 +55,7 @@
                     wire:model="description"
                     placeholder="Enter image description"
                     rows="3"
-                    class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                    class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent"></textarea>
             </div>
 
             <!-- File Upload -->
@@ -95,7 +95,7 @@
                     wire:model="isPublished"
                     type="checkbox"
                     id="isPublished"
-                    class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary">
+                    class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-1 focus:ring-primary">
                 <label for="isPublished" class="text-sm font-medium text-gray-700 dark:text-gray-300">Publish immediately</label>
             </div>
 
@@ -120,13 +120,13 @@
                     wire:model.debounce.300ms="search"
                     type="search"
                     placeholder="Search images..."
-                    class="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent">
             </div>
 
             <!-- Category Filter -->
             <select 
                 wire:model="filterCategory"
-                class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent">
                 <option value="all">All Categories</option>
                 @foreach($categories as $cat)
                 <option value="{{ $cat }}">{{ ucfirst($cat) }}</option>

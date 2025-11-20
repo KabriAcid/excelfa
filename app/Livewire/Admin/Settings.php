@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -134,7 +135,7 @@ class Settings extends Component
     {
         try {
             /** @var \App\Models\User $currentUser */
-            $currentUser = auth()->user();
+            $currentUser = Auth::user();
             User::where('id', $userId)->where('id', '!=', $currentUser->id)->update(['role' => 'user']);
             $this->loadAdmins();
             $this->dispatch('notify', type: 'success', message: 'Admin role removed successfully!');
@@ -158,4 +159,3 @@ class Settings extends Component
         return view('livewire.admin.settings');
     }
 }
-

@@ -61,16 +61,16 @@
                             </svg>
                             <span>First Name <span class="text-red-500">*</span></span>
                         </label>
-                        <input type="text" wire:model="firstName" placeholder="Enter first name" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="text" wire:model="firstName" placeholder="Enter first name" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                         @error('firstName') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                     <div>
                         <label class="block mb-2 font-medium text-sm">Middle Name</label>
-                        <input type="text" wire:model="middleName" placeholder="Enter middle name" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="text" wire:model="middleName" placeholder="Enter middle name" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                     </div>
                     <div>
                         <label class="block mb-2 font-medium text-sm">Surname <span class="text-red-500">*</span></label>
-                        <input type="text" wire:model="surname" placeholder="Enter surname" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="text" wire:model="surname" placeholder="Enter surname" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                         @error('surname') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="block mb-2 font-medium text-sm">Nickname</label>
-                        <input type="text" wire:model="nickname" placeholder="Enter nickname (optional)" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="text" wire:model="nickname" placeholder="Enter nickname (optional)" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                     </div>
                     <div>
                         <label class="flex items-center space-x-2 mb-2 font-medium text-sm">
@@ -88,7 +88,7 @@
                             </svg>
                             <span>Age (13-20) <span class="text-red-500">*</span></span>
                         </label>
-                        <input type="number" wire:model="age" min="13" max="20" placeholder="Enter age" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="number" wire:model="age" min="13" max="20" placeholder="Enter age" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                         @error('age') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -97,9 +97,9 @@
                 <div>
                     <label class="block mb-3 font-semibold text-sm">Date of Birth <span class="text-red-500">*</span></label>
                     <div class="grid grid-cols-3 gap-4">
-                        <input type="number" wire:model="dobDay" placeholder="Day" min="1" max="31" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
-                        <input type="number" wire:model="dobMonth" placeholder="Month" min="1" max="12" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
-                        <input type="number" wire:model="dobYear" placeholder="Year" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="number" wire:model="dobDay" placeholder="Day" min="1" max="31" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
+                        <input type="number" wire:model="dobMonth" placeholder="Month" min="1" max="12" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
+                        <input type="number" wire:model="dobYear" placeholder="Year" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                     </div>
                     @error('dobDay') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                 </div>
@@ -113,7 +113,7 @@
                             </svg>
                             <span>Height (cm) <span class="text-red-500">*</span></span>
                         </label>
-                        <input type="number" id="height" wire:model="height" placeholder="e.g., 165" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="number" id="height" wire:model="height" placeholder="e.g., 165" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                         @error('height') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                     <div>
@@ -123,12 +123,12 @@
                             </svg>
                             <span>Weight (kg) <span class="text-red-500">*</span></span>
                         </label>
-                        <input type="number" wire:model="weight" placeholder="e.g., 55" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="number" wire:model="weight" placeholder="e.g., 55" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                         @error('weight') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                     <div>
                         <label class="block mb-2 font-medium text-sm">Complexion</label>
-                        <input type="text" wire:model="complexion" placeholder="e.g., Fair, Dark" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="text" wire:model="complexion" placeholder="e.g., Fair, Dark" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                     </div>
                 </div>
             </div>
@@ -145,12 +145,12 @@
                             </svg>
                             <span>Local Government Area <span class="text-red-500">*</span></span>
                         </label>
-                        <input type="text" wire:model="lga" placeholder="Enter LGA" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="text" wire:model="lga" placeholder="Enter LGA" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                         @error('lga') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                     <div>
                         <label class="block mb-2 font-medium text-sm">State of Origin <span class="text-red-500">*</span></label>
-                        <input type="text" wire:model="stateOfOrigin" placeholder="Enter state" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="text" wire:model="stateOfOrigin" placeholder="Enter state" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                         @error('stateOfOrigin') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -163,12 +163,12 @@
                             </svg>
                             <span>Country <span class="text-red-500">*</span></span>
                         </label>
-                        <input type="text" wire:model="country" placeholder="e.g., Nigeria" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="text" wire:model="country" placeholder="e.g., Nigeria" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                         @error('country') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                     <div>
                         <label class="block mb-2 font-medium text-sm">Region/State</label>
-                        <input type="text" wire:model="region" placeholder="Enter region (optional)" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="text" wire:model="region" placeholder="Enter region (optional)" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                     </div>
                 </div>
             </div>
@@ -185,7 +185,7 @@
                             </svg>
                             <span>Religion <span class="text-red-500">*</span></span>
                         </label>
-                        <select wire:model="religion" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                        <select wire:model="religion" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary">
                             <option value="">Select religion</option>
                             <option value="islam">Islam</option>
                             <option value="christian">Christian</option>
@@ -196,7 +196,7 @@
                     </div>
                     <div>
                         <label class="block mb-2 font-medium text-sm">Tribe <span class="text-red-500">*</span></label>
-                        <input type="text" wire:model="tribe" placeholder="Enter tribe" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="text" wire:model="tribe" placeholder="Enter tribe" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                         @error('tribe') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -214,7 +214,7 @@
                             </svg>
                             <span>Jersey Preference <span class="text-red-500">*</span></span>
                         </label>
-                        <select wire:model="jerseyPreference" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                        <select wire:model="jerseyPreference" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary">
                             <option value="">Select sleeve type</option>
                             <option value="short">Short Sleeve</option>
                             <option value="long">Long Sleeve</option>
@@ -228,7 +228,7 @@
                             </svg>
                             <span>Role Model</span>
                         </label>
-                        <input type="text" wire:model="roleModel" placeholder="e.g., Cristiano Ronaldo" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="text" wire:model="roleModel" placeholder="e.g., Cristiano Ronaldo" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                     </div>
                 </div>
 
@@ -240,7 +240,7 @@
                             </svg>
                             <span>Favourite League</span>
                         </label>
-                        <select wire:model="favouriteLeague" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                        <select wire:model="favouriteLeague" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary">
                             <option value="">Select league</option>
                             <option value="epl">English Premier League</option>
                             <option value="laliga">La Liga</option>
@@ -250,18 +250,18 @@
                     </div>
                     <div>
                         <label class="block mb-2 font-medium text-sm">Favourite Team</label>
-                        <input type="text" wire:model="favouriteTeam" placeholder="e.g., Manchester United" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="text" wire:model="favouriteTeam" placeholder="e.g., Manchester United" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="block mb-2 font-medium text-sm">Favourite Food</label>
-                        <input type="text" wire:model="favouriteFood" placeholder="e.g., Jollof Rice" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="text" wire:model="favouriteFood" placeholder="e.g., Jollof Rice" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                     </div>
                     <div>
                         <label class="block mb-2 font-medium text-sm">Hobby</label>
-                        <input type="text" wire:model="hobby" placeholder="e.g., Reading, Music" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <input type="text" wire:model="hobby" placeholder="e.g., Reading, Music" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                     </div>
                 </div>
 

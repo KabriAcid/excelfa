@@ -45,7 +45,7 @@
                                 <input
                                     type="text"
                                     wire:model="name"
-                                    class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                    class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent transition-all"
                                     placeholder="Your full name *"
                                     required />
                             </div>
@@ -64,7 +64,7 @@
                                     <input
                                         type="email"
                                         wire:model="email"
-                                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent transition-all"
                                         placeholder="your@email.com *"
                                         required />
                                 </div>
@@ -81,7 +81,7 @@
                                         type="tel"
                                         id="phone_number"
                                         wire:model="phone"
-                                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent transition-all"
                                         placeholder="+234 800 000 0000" />
                                 </div>
                                 @error('phone') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
@@ -99,7 +99,7 @@
                                 <input
                                     type="text"
                                     wire:model="subject"
-                                    class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                    class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent transition-all"
                                     placeholder="Message subject *"
                                     required />
                             </div>
@@ -117,7 +117,7 @@
                                 <textarea
                                     wire:model="message"
                                     rows="6"
-                                    class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
+                                    class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent transition-all resize-none"
                                     placeholder="Your message... *"
                                     required></textarea>
                             </div>
