@@ -15,6 +15,7 @@ class Enrollment extends Model
         'first_name',
         'surname',
         'age',
+        'dob',
         'dob_day',
         'dob_month',
         'dob_year',
@@ -47,7 +48,6 @@ class Enrollment extends Model
 
         // Metadata
         'status',
-        'submitted_at',
     ];
 
     protected $casts = [
@@ -90,7 +90,6 @@ class Enrollment extends Model
     {
         $this->update([
             'status' => 'submitted',
-            'submitted_at' => now(),
         ]);
     }
 

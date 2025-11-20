@@ -170,7 +170,6 @@ class Register extends Component
                 'hobby' => $this->hobby,
                 'agreed_to_terms' => $this->agreedToTerms,
                 'status' => 'submitted',
-                'submitted_at' => now(),
             ]);
 
             // Log the successful submission
