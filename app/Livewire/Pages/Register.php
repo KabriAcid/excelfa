@@ -11,6 +11,9 @@ class Register extends Component
     public int $step = 1;
     public int $totalSteps = 4;
     public bool $isValidating = false;
+    public bool $showConfirmModal = false;
+    public bool $showSuccessModal = false;
+    public bool $isSubmitting = false;
 
     // Personal Info
     public string $firstName = '';
@@ -113,6 +116,15 @@ class Register extends Component
 
     public function submitApplication()
     {
+        // Show confirmation modal instead of directly submitting
+        $this->showConfirmModal = true;
+    }
+
+    public function confirmSubmission()
+    {
+        $this->isSubmitting = true;
+        $this->showConfirmModal = false;
+
         // Validate all fields with current year
         $currentYear = date('Y');
         $rules = $this->rules;
@@ -122,6 +134,7 @@ class Register extends Component
 
         if (!$this->agreedToTerms) {
             $this->addError('agreedToTerms', 'You must agree to the terms and conditions');
+            $this->isSubmitting = false;
             return;
         }
 
@@ -158,18 +171,33 @@ class Register extends Component
                 'submitted_at' => now(),
             ]);
 
-            $this->dispatch('notify', message: 'Registration Successful! Your application has been submitted. We\'ll contact you soon.');
-
             // Log the successful submission
             logger()->info('Enrollment submitted successfully', ['enrollment_id' => $enrollment->id, 'name' => $enrollment->full_name]);
 
-            // Reset form
-            $this->reset();
-            $this->step = 1;
+            // Show success modal
+            $this->showSuccessModal = true;
+            $this->isSubmitting = false;
+
+            // Reset form after 3 seconds
+            $this->dispatch('success-submitted');
         } catch (\Exception $e) {
             logger()->error('Enrollment submission failed', ['error' => $e->getMessage()]);
             $this->addError('submit', 'An error occurred while processing your application. Please try again.');
+            $this->isSubmitting = false;
         }
+    }
+
+    public function cancelSubmission()
+    {
+        $this->showConfirmModal = false;
+    }
+
+    public function closeSuccessModal()
+    {
+        $this->showSuccessModal = false;
+        // Reset form
+        $this->reset();
+        $this->step = 1;
     }
 
     protected function validateStep()
