@@ -164,7 +164,7 @@
                         </div>
                         <div>
                             <label class="text-xs text-muted-foreground mb-1 block">Year</label>
-                            <input type="number" wire:model="dobYear" placeholder="YYYY" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
+                            <input type="number" wire:model="dobYear" maxlength="4" placeholder="YYYY" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                         </div>
                     </div>
                     @error('dobDay') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
@@ -221,12 +221,19 @@
                             </svg>
                             <span>Local Government Area <span class="text-red-500">*</span></span>
                         </label>
-                        <input type="text" wire:model="lga" placeholder="Enter LGA" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
+                        <select wire:model="lga" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary bg-background select-lga" data-state="0">
+                            <option value="">Select LGA</option>
+                        </select>
                         @error('lga') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                     <div>
                         <label class="block mb-2 font-medium text-sm">State of Origin <span class="text-red-500">*</span></label>
-                        <input type="text" wire:model="stateOfOrigin" placeholder="Enter state" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
+                        <select wire:model="stateOfOrigin" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary bg-background select-state" data-state="0">
+                            <option value="">Select State</option>
+                            @foreach ($states as $state)
+                                <option value="{{ $state->name }}">{{ $state->name }}</option>
+                            @endforeach
+                        </select>
                         @error('stateOfOrigin') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -386,3 +393,7 @@
 </form>
 </div>
 </div>
+
+@push('scripts')
+<script src="{{ asset('js/state-capital.js') }}"></script>
+@endpush

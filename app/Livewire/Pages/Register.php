@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages;
 
 use App\Models\Enrollment;
+use App\Models\State;
 use Livewire\Component;
 
 class Register extends Component
@@ -49,13 +50,13 @@ class Register extends Component
         'nickname' => 'nullable|string|max:255',
         'age' => 'required|integer|min:13|max:20',
         'dobDay' => 'required|integer|min:1|max:31',
-        'dobMonth' => 'required|string|regex:/^(01|02|03|04|05|06|07|08|09|10|11|12)$/',
+        'dobMonth' => ['required', 'string', 'regex:/^(0[1-9]|1[0-2])$/'],
         'dobYear' => 'required|integer|digits:4|min:1900',
         'height' => 'required|numeric|min:100|max:250',
         'weight' => 'required|numeric|min:20|max:150',
         'complexion' => 'nullable|in:fair,dark,brown,olive,tan',
         'lga' => 'required|string|max:255',
-        'stateOfOrigin' => 'required|string|max:255',
+        'stateOfOrigin' => 'required|string|max:255|exists:states,name',
         'country' => 'required|string|max:255',
         'region' => 'nullable|string|max:255',
         'religion' => 'required|in:islam,christian,traditionalist,freethinker',
@@ -201,6 +202,8 @@ class Register extends Component
     #[\Livewire\Attributes\Layout('layouts.public')]
     public function render()
     {
-        return view('livewire.pages.enrol');
+        return view('livewire.pages.enrol', [
+            'states' => State::all(),
+        ]);
     }
 }
