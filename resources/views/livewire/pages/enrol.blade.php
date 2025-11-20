@@ -227,7 +227,7 @@
                     <div>
                         <label class="block mb-2 font-medium text-sm">Local Government Area <span class="text-red-500">*</span></label>
                         <select wire:model="lga" wire:ignore name="lga" id="lga" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary bg-background select-lga" data-state="0" required>
-                            <option value="null">...Select LGA...</option>
+                            <option value="">...Select LGA...</option>
                         </select>
                         @error('lga') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>

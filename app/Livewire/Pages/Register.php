@@ -116,7 +116,9 @@ class Register extends Component
 
     public function submitApplication()
     {
-        // Show confirmation modal instead of directly submitting
+        // Validate step 4 (final step) before showing confirmation
+        $this->validateStep();
+        // If validation passed, show confirmation modal
         $this->showConfirmModal = true;
     }
 
