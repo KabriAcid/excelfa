@@ -117,7 +117,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="block mb-2 font-medium text-sm">Nickname</label>
-                        <input type="text" wire:model="nickname" placeholder="Enter nickname (optional)" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
+                        <input type="text" id="nickname" wire:model="nickname" placeholder="Enter nickname (optional)" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                     </div>
                     <div>
                         <label class="flex items-center space-x-2 mb-2 font-medium text-sm">
@@ -164,7 +164,7 @@
                         </div>
                         <div>
                             <label class="text-xs text-muted-foreground mb-1 block">Year</label>
-                            <input type="number" wire:model="dobYear" maxlength="4" placeholder="YYYY" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
+                            <input type="number" id="year" wire:model="dobYear" maxlength="4" placeholder="YYYY" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
                             @error('dobYear') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
                         </div>
                     </div>
@@ -212,29 +212,24 @@
 
             <!-- Step 2: Location -->
             @if ($this->step === 2)
-            <div class="space-y-6">
+            <div class="space-y-6" id="locationForm">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="flex items-center space-x-2 mb-2 font-medium text-sm">
-                            <svg class="h-4 w-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            </svg>
-                            <span>Local Government Area <span class="text-red-500">*</span></span>
-                        </label>
-                        <select wire:model="lga" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary bg-background select-lga" data-state="0">
-                            <option value="">Select LGA</option>
-                        </select>
-                        @error('lga') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
-                    </div>
-                    <div>
                         <label class="block mb-2 font-medium text-sm">State of Origin <span class="text-red-500">*</span></label>
-                        <select wire:model="stateOfOrigin" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary bg-background select-state" data-state="0">
-                            <option value="">Select State</option>
+                        <select wire:model="stateOfOrigin" name="state" id="state" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary bg-background select-state" data-state="0" required>
+                            <option value="">-- Select State --</option>
                             @foreach ($states as $state)
                                 <option value="{{ $state->name }}">{{ $state->name }}</option>
                             @endforeach
                         </select>
                         @error('stateOfOrigin') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-medium text-sm">Local Government Area <span class="text-red-500">*</span></label>
+                        <select wire:model="lga" name="lga" id="lga" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary bg-background select-lga" data-state="0" required>
+                            <option value="">...Select LGA...</option>
+                        </select>
+                        @error('lga') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
@@ -246,7 +241,7 @@
                             </svg>
                             <span>Country <span class="text-red-500">*</span></span>
                         </label>
-                        <input type="text" wire:model="country" placeholder="e.g., Nigeria" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
+                        <input type="text" disabled="disabled" wire:model="country" placeholder="e.g., Nigeria" class="bg-gray-100 w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary hover:disabled" />
                         @error('country') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                     <div>
@@ -377,8 +372,16 @@
                     <button
                         type="button"
                         wire:click="nextStep"
-                        class="px-6 py-2 bg-primary text-primary-foreground rounded-md font-medium hover:opacity-90 transition-opacity">
-                        Next Step
+                        wire:loading.attr="disabled"
+                        class="px-6 py-2 bg-primary text-primary-foreground rounded-md font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+                        <span wire:loading.remove>Next Step</span>
+                        <span wire:loading class="inline-flex items-center gap-2">
+                            <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Validating...
+                        </span>
                     </button>
                     @else
                     <button

@@ -10,6 +10,7 @@ class Register extends Component
 {
     public int $step = 1;
     public int $totalSteps = 4;
+    public bool $isValidating = false;
 
     // Personal Info
     public string $firstName = '';
@@ -83,7 +84,7 @@ class Register extends Component
         'dobMonth.regex' => 'Invalid month selected',
         'dobYear.digits' => 'Year must be 4 digits (e.g., 2005)',
         'dobYear.integer' => 'Invalid year',
-        'dobYear.max' => 'Birth year is too recent. You must be at least 13 years old.',
+        'dobYear.max' => 'Birth year must be at least 13 years old.',
         'height.required' => 'Height is required',
         'weight.required' => 'Weight is required',
         'complexion.in' => 'Please select a valid complexion type',
@@ -92,10 +93,14 @@ class Register extends Component
 
     public function nextStep()
     {
-        $this->validateStep();
-
-        if ($this->step < $this->totalSteps) {
-            $this->step++;
+        $this->isValidating = true;
+        try {
+            $this->validateStep();
+            if ($this->step < $this->totalSteps) {
+                $this->step++;
+            }
+        } finally {
+            $this->isValidating = false;
         }
     }
 
