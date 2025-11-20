@@ -29,7 +29,7 @@ Route::get('/logout', function () {
 
     // Redirect to login page
     return redirect('/login');
-});
+})->name('logout');
 
 // Public Routes
 Route::get('/', Home::class)->name('home');

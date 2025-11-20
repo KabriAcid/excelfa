@@ -54,4 +54,12 @@ class DashboardHome extends Component
             'inquiryStatusCounts' => $inquiryStatusCounts,
         ]);
     }
+
+    public function notify($type, $message)
+    {
+        $this->dispatchBrowserEvent('toast', [
+            'type' => $type,
+            'message' => $message,
+        ]);
+    }
 }

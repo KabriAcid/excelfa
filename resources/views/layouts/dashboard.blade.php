@@ -63,11 +63,42 @@
     @livewireScripts
 
     <!-- Toast notifications container -->
-    <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2" x-data="{ toasts: [] }">
+    <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2" x-data="toastContainer">
         <template x-for="toast in toasts" :key="toast.id">
             <x-dashboard.toast :type="toast.type" :message="toast.message" />
         </template>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const toastContainer = document.querySelector('#toast-container').__x.$data;
+                toastContainer.addToast('success', 'This is a test toast!');
+            });
+        </script>
     </div>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('toastContainer', () => ({
+                toasts: [],
+                addToast(type, message) {
+                    this.toasts.push({
+                        id: Date.now(),
+                        type,
+                        message
+                    });
+                    setTimeout(() => {
+                        this.toasts = this.toasts.filter(t => t.id !== this.toasts[0].id);
+                    }, 5000);
+                }
+            }));
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('toast', event => {
+                const toastContainer = document.querySelector('#toast-container').__x.$data;
+                toastContainer.addToast(event.detail.type, event.detail.message);
+            });
+        });
+    </script>
 </body>
 
 </html>
