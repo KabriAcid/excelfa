@@ -36,7 +36,7 @@
 
             <!-- Page content -->
             <main class="py-4 pb-12 lg:pb-4">
-                <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-6">
+                <div class="mx-auto px-6 sm:px-4 lg:px-6">
                     <!-- Page header -->
                     @if (isset($header))
                     <header class="mb-6">
