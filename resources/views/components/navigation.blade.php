@@ -36,9 +36,21 @@
 
                 <!-- Action Buttons -->
                 <div class="flex items-center space-x-3">
-                    <a href="/login" wire:navigate class="px-4 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors border border-border">
-                        Login
-                    </a>
+                    @if(auth()->check())
+                        @if(auth()->user()->role === 'admin')
+                            <a href="/admin/dashboard" wire:navigate class="px-4 py-2 rounded-md text-sm font-medium text-white bg-primary hover:bg-primary/90 transition-colors border border-primary">
+                                Dashboard
+                            </a>
+                        @else
+                            <a href="/" wire:navigate class="px-4 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors border border-border">
+                                Profile
+                            </a>
+                        @endif
+                    @else
+                        <a href="/login" wire:navigate class="px-4 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors border border-border">
+                            Login
+                        </a>
+                    @endif
                     <a href="/enrol" wire:navigate class="px-6 py-2 rounded-md text-sm font-semibold text-white bg-primary hover:bg-primary/90 transition-all shadow-premium">
                         Enrol Now
                     </a>
@@ -92,9 +104,21 @@
                     Anthem
                 </a>
                 <div class="border-t border-border pt-3 mt-3 flex flex-col space-y-2">
-                    <a href="/login" wire:navigate @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors border border-border text-center">
-                        Login
-                    </a>
+                    @if(auth()->check())
+                        @if(auth()->user()->role === 'admin')
+                            <a href="/admin/dashboard" wire:navigate @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-semibold text-white bg-primary hover:bg-primary/90 transition-all shadow-premium text-center">
+                                Dashboard
+                            </a>
+                        @else
+                            <a href="/" wire:navigate @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors border border-border text-center">
+                                Profile
+                            </a>
+                        @endif
+                    @else
+                        <a href="/login" wire:navigate @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors border border-border text-center">
+                            Login
+                        </a>
+                    @endif
                     <a href="/enrol" wire:navigate @click="mobileMenuOpen = false" class="px-4 py-3 rounded-md text-sm font-semibold text-white bg-primary hover:bg-primary/90 transition-all shadow-premium text-center">
                         Enrol Now
                     </a>

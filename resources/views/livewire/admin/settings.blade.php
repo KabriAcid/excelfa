@@ -80,12 +80,16 @@
             </div>
 
             <div class="flex justify-end gap-4 pt-6 border-t border-gray-200 dark:border-gray-700">
-                <x-secondary-button type="button">
+                <button 
+                    type="button"
+                    class="px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg font-medium transition-colors">
                     {{ __('Cancel') }}
-                </x-secondary-button>
-                <x-primary-button type="submit">
+                </button>
+                <button 
+                    type="submit"
+                    class="px-4 py-2 text-white bg-primary hover:bg-primary/90 rounded-lg font-medium transition-colors">
                     {{ __('Save Changes') }}
-                </x-primary-button>
+                </button>
             </div>
         </form>
     </div>
@@ -136,14 +140,17 @@
             </div>
 
             <div class="flex justify-end gap-4 pt-6 border-t border-gray-200 dark:border-gray-700">
-                <x-secondary-button 
+                <button 
                     type="button"
-                    wire:click="sendTestEmail">
+                    wire:click="sendTestEmail"
+                    class="px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg font-medium transition-colors">
                     {{ __('Send Test Email') }}
-                </x-secondary-button>
-                <x-primary-button type="submit">
+                </button>
+                <button 
+                    type="submit"
+                    class="px-4 py-2 text-white bg-primary hover:bg-primary/90 rounded-lg font-medium transition-colors">
                     {{ __('Save Changes') }}
-                </x-primary-button>
+                </button>
             </div>
         </form>
     </div>
@@ -174,12 +181,16 @@
             </div>
 
             <div class="flex justify-end gap-4 pt-6 border-t border-gray-200 dark:border-gray-700">
-                <x-secondary-button type="button">
+                <button 
+                    type="button"
+                    class="px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg font-medium transition-colors">
                     {{ __('Cancel') }}
-                </x-secondary-button>
-                <x-primary-button type="submit">
+                </button>
+                <button 
+                    type="submit"
+                    class="px-4 py-2 text-white bg-primary hover:bg-primary/90 rounded-lg font-medium transition-colors">
                     {{ __('Save Changes') }}
-                </x-primary-button>
+                </button>
             </div>
         </form>
     </div>
@@ -190,9 +201,11 @@
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-premium border border-gray-200 dark:border-gray-700 p-6">
         <div class="flex justify-between items-center mb-6">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Manage Admins</h3>
-            <x-primary-button wire:click="openAddAdminModal">
+            <button 
+                wire:click="openAddAdminModal"
+                class="px-4 py-2 text-white bg-primary hover:bg-primary/90 rounded-lg font-medium transition-colors">
                 + Add Admin
-            </x-primary-button>
+            </button>
         </div>
 
         <div class="overflow-x-auto">
@@ -305,13 +318,18 @@
                 </div>
 
                 <div class="mt-6 flex justify-end gap-3">
-                    <x-secondary-button x-on:click="$dispatch('close')">
+                    <button 
+                        type="button"
+                        x-on:click="$dispatch('close')"
+                        class="px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg font-medium transition-colors">
                         {{ __('Cancel') }}
-                    </x-secondary-button>
+                    </button>
 
-                    <x-primary-button>
+                    <button 
+                        type="submit"
+                        class="px-4 py-2 text-white bg-primary hover:bg-primary/90 rounded-lg font-medium transition-colors">
                         {{ __('Create Admin') }}
-                    </x-primary-button>
+                    </button>
                 </div>
             </form>
         </x-modal>
