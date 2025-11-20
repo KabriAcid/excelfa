@@ -24,15 +24,15 @@ new #[Layout('layouts.guest')] class extends Component
         Session::regenerate();
 
         // Determine redirect based on user role after authentication
-        $redirectRoute = 'dashboard';
+        $redirectRoute = 'admin.dashboard';
 
         if (Auth::check()) {
             $userRole = Auth::user()->role ?? 'user';
             $redirectRoute = match ($userRole) {
-                'admin' => 'dashboard',
-                'parent' => 'dashboard',
-                'coach' => 'dashboard',
-                default => 'dashboard',
+                'admin' => 'admin.dashboard',
+                'parent' => 'home',
+                'coach' => 'home',
+                default => 'home',
             };
         }
 
