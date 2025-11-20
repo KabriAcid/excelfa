@@ -7,26 +7,64 @@
         </div>
 
         <!-- Progress Bar -->
-        <div class="max-w-4xl mx-auto mb-12">
-            <div class="flex items-center justify-between mb-4">
+        <div class="max-w-4xl mx-auto mb-16">
+            <!-- Desktop Progress Bar (all steps) -->
+            <div class="hidden md:flex items-start justify-between mb-12">
                 @for ($s = 1; $s <= 4; $s++)
-                    <div class="flex items-center flex-1">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold transition-colors {{ $s <= $this->step ? 'bg-primary text-primary-foreground' : 'bg-muted-foreground/20 text-muted-foreground' }}">
-                        {{ $s }}
+                    <div class="flex flex-col items-center flex-1 relative">
+                        <!-- Step Indicator -->
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold transition-colors {{ $s <= $this->step ? 'bg-primary text-primary-foreground' : 'bg-muted-foreground/20 text-muted-foreground' }} relative z-10">
+                            {{ $s }}
+                        </div>
+                        
+                        <!-- Step Label -->
+                        <p class="text-xs text-muted-foreground mt-3 text-center font-medium whitespace-nowrap">
+                            @if ($s === 1)
+                                Personal Info
+                            @elseif ($s === 2)
+                                Location
+                            @elseif ($s === 3)
+                                Background
+                            @else
+                                Preferences
+                            @endif
+                        </p>
+
+                        <!-- Connector Line -->
+                        @if ($s < 4)
+                            <div class="absolute top-5 left-1/2 w-full h-0.5 border-t-2 border-dotted -z-10" style="width: 200%; left: 50%; transform: translateY(-50%);" class="transition-colors {{ $s < $this->step ? 'border-primary' : 'border-muted-foreground/20' }}"></div>
+                        @endif
                     </div>
-                    @if ($s < 4)
-                        <div class="flex-1 h-1 mx-2 transition-colors {{ $s < $this->step ? 'bg-primary' : 'bg-muted-foreground/20' }}">
+                @endfor
             </div>
-            @endif
-        </div>
-        @endfor
-    </div>
-    <div class="flex justify-between text-sm text-muted-foreground">
-        <span>Personal Info</span>
-        <span>Location</span>
-        <span>Background</span>
-        <span>Preferences</span>
-    </div>
+
+            <!-- Mobile Progress Bar (single step indicator) -->
+            <div class="md:hidden flex items-center justify-between mb-6">
+                <div class="flex items-center gap-3 flex-1">
+                    <div class="w-12 h-12 rounded-full flex items-center justify-center font-bold transition-colors bg-primary text-primary-foreground text-lg">
+                        {{ $this->step }}
+                    </div>
+                    <div>
+                        <p class="text-xs text-muted-foreground">Step {{ $this->step }} of {{ $this->totalSteps }}</p>
+                        <p class="font-semibold text-foreground">
+                            @if ($this->step === 1)
+                            Personal Info
+                            @elseif ($this->step === 2)
+                            Location
+                            @elseif ($this->step === 3)
+                            Background
+                            @else
+                            Preferences
+                            @endif
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress percentage bar -->
+            <div class="w-full bg-muted-foreground/20 rounded-full h-1 overflow-hidden">
+                <div class="bg-primary h-full transition-all duration-300" style="width: {{ ($this->step / $this->totalSteps) * 100 }}%"></div>
+            </div>
 </div>
 
 <!-- Form -->
@@ -86,9 +124,14 @@
                             <svg class="h-4 w-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
-                            <span>Age (13-20) <span class="text-red-500">*</span></span>
+                            <span>Age <span class="text-red-500">*</span></span>
                         </label>
-                        <input type="number" wire:model="age" min="13" max="20" placeholder="Enter age" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
+                        <select wire:model="age" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary bg-background">
+                            <option value="">Select your age</option>
+                            @for ($a = 13; $a <= 20; $a++)
+                                <option value="{{ $a }}">{{ $a }} years</option>
+                            @endfor
+                        </select>
                         @error('age') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -97,11 +140,36 @@
                 <div>
                     <label class="block mb-3 font-semibold text-sm">Date of Birth <span class="text-red-500">*</span></label>
                     <div class="grid grid-cols-3 gap-4">
-                        <input type="number" wire:model="dobDay" placeholder="Day" min="1" max="31" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
-                        <input type="number" wire:model="dobMonth" placeholder="Month" min="1" max="12" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
-                        <input type="number" wire:model="dobYear" placeholder="Year" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
+                        <div>
+                            <label class="text-xs text-muted-foreground mb-1 block">Day</label>
+                            <input type="number" wire:model="dobDay" placeholder="DD" min="1" max="31" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
+                        </div>
+                        <div>
+                            <label class="text-xs text-muted-foreground mb-1 block">Month</label>
+                            <select wire:model="dobMonth" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary bg-background">
+                                <option value="">Month</option>
+                                <option value="01">January</option>
+                                <option value="02">February</option>
+                                <option value="03">March</option>
+                                <option value="04">April</option>
+                                <option value="05">May</option>
+                                <option value="06">June</option>
+                                <option value="07">July</option>
+                                <option value="08">August</option>
+                                <option value="09">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-muted-foreground mb-1 block">Year</label>
+                            <input type="number" wire:model="dobYear" placeholder="YYYY" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
+                        </div>
                     </div>
                     @error('dobDay') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
+                    @error('dobMonth') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
+                    @error('dobYear') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                 </div>
 
                 <!-- Height, Weight, Complexion -->
@@ -128,7 +196,15 @@
                     </div>
                     <div>
                         <label class="block mb-2 font-medium text-sm">Complexion</label>
-                        <input type="text" wire:model="complexion" placeholder="e.g., Fair, Dark" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" />
+                        <select wire:model="complexion" class="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary bg-background">
+                            <option value="">Select complexion</option>
+                            <option value="fair">Fair</option>
+                            <option value="dark">Dark</option>
+                            <option value="brown">Brown</option>
+                            <option value="olive">Olive</option>
+                            <option value="tan">Tan</option>
+                        </select>
+                        @error('complexion') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                 </div>
             </div>

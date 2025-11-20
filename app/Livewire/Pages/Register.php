@@ -49,11 +49,11 @@ class Register extends Component
         'nickname' => 'nullable|string|max:255',
         'age' => 'required|integer|min:13|max:20',
         'dobDay' => 'required|integer|min:1|max:31',
-        'dobMonth' => 'required|integer|min:1|max:12',
-        'dobYear' => 'required|integer',
+        'dobMonth' => 'required|string|regex:/^(01|02|03|04|05|06|07|08|09|10|11|12)$/',
+        'dobYear' => 'required|integer|digits:4|min:1900',
         'height' => 'required|numeric|min:100|max:250',
         'weight' => 'required|numeric|min:20|max:150',
-        'complexion' => 'nullable|string|max:255',
+        'complexion' => 'nullable|in:fair,dark,brown,olive,tan',
         'lga' => 'required|string|max:255',
         'stateOfOrigin' => 'required|string|max:255',
         'country' => 'required|string|max:255',
@@ -75,8 +75,17 @@ class Register extends Component
         'age.required' => 'Age is required',
         'age.min' => 'You must be at least 13 years old',
         'age.max' => 'You must be 20 years or younger',
+        'dobDay.required' => 'Day of birth is required',
+        'dobMonth.required' => 'Month of birth is required',
+        'dobYear.required' => 'Year of birth is required',
+        'dobDay.integer' => 'Invalid day',
+        'dobMonth.regex' => 'Invalid month selected',
+        'dobYear.digits' => 'Year must be 4 digits (e.g., 2005)',
+        'dobYear.integer' => 'Invalid year',
+        'dobYear.min' => 'Year must be 1900 or later',
         'height.required' => 'Height is required',
         'weight.required' => 'Weight is required',
+        'complexion.in' => 'Please select a valid complexion type',
         'agreedToTerms.accepted' => 'You must agree to the terms and conditions',
     ];
 
@@ -98,7 +107,12 @@ class Register extends Component
 
     public function submitApplication()
     {
-        $validated = $this->validate();
+        // Validate all fields with current year
+        $currentYear = date('Y');
+        $rules = $this->rules;
+        $rules['dobYear'] = "required|integer|min:1900|max:{$currentYear}";
+
+        $validated = $this->validate($rules);
 
         if (!$this->agreedToTerms) {
             $this->addError('agreedToTerms', 'You must agree to the terms and conditions');
@@ -106,11 +120,15 @@ class Register extends Component
         }
 
         try {
+            // Format date of birth as YYYY-MM-DD
+            $dateOfBirth = sprintf('%04d-%02d-%02d', $this->dobYear, $this->dobMonth, $this->dobDay);
+
             // Save to database
             $enrollment = Enrollment::create([
                 'first_name' => $this->firstName,
                 'surname' => $this->surname,
                 'age' => $this->age,
+                'dob' => $dateOfBirth,
                 'dob_day' => $this->dobDay,
                 'dob_month' => $this->dobMonth,
                 'dob_year' => $this->dobYear,
@@ -150,6 +168,7 @@ class Register extends Component
 
     protected function validateStep()
     {
+        $currentYear = date('Y');
         $rules = match ($this->step) {
             1 => [
                 'firstName' => $this->rules['firstName'],
@@ -157,7 +176,7 @@ class Register extends Component
                 'age' => $this->rules['age'],
                 'dobDay' => $this->rules['dobDay'],
                 'dobMonth' => $this->rules['dobMonth'],
-                'dobYear' => $this->rules['dobYear'],
+                'dobYear' => "required|integer|min:1900|max:{$currentYear}",
                 'height' => $this->rules['height'],
                 'weight' => $this->rules['weight'],
             ],
