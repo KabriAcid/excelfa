@@ -83,7 +83,7 @@ class Register extends Component
         'dobMonth.regex' => 'Invalid month selected',
         'dobYear.digits' => 'Year must be 4 digits (e.g., 2005)',
         'dobYear.integer' => 'Invalid year',
-        'dobYear.min' => 'Year must be 1900 or later',
+        'dobYear.max' => 'Birth year is too recent. You must be at least 13 years old.',
         'height.required' => 'Height is required',
         'weight.required' => 'Weight is required',
         'complexion.in' => 'Please select a valid complexion type',
