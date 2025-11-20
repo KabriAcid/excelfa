@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", event => {
+// Function to initialize state/LGA selection
+const initializeStateSelection = () => {
   // Function to toggle visibility of elements with class 'input-location-dependant'
   const hideLoadingAnimation = () => {
     document.querySelectorAll(".input-location-dependant").forEach(element => {
@@ -929,4 +930,10 @@ document.addEventListener("DOMContentLoaded", event => {
       }
     }
   });
-});
+};
+
+// Initialize on DOM content loaded
+document.addEventListener("DOMContentLoaded", initializeStateSelection);
+
+// Re-initialize when Livewire updates the component
+document.addEventListener("livewire:updated", initializeStateSelection);
