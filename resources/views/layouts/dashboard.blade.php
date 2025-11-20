@@ -35,8 +35,8 @@
             <x-dashboard.top-nav />
 
             <!-- Page content -->
-            <main class="py-6 pb-20 lg:pb-6">
-                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <main class="py-4 pb-12 lg:pb-4">
+                <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-6">
                     <!-- Page header -->
                     @if (isset($header))
                     <header class="mb-6">
@@ -63,39 +63,24 @@
     @livewireScripts
 
     <!-- Toast notifications container -->
-    <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2" x-data="toastContainer">
-        <template x-for="toast in toasts" :key="toast.id">
-            <x-dashboard.toast :type="toast.type" :message="toast.message" />
-        </template>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const toastContainer = document.querySelector('#toast-container').__x.$data;
-                toastContainer.addToast('success', 'This is a test toast!');
-            });
-        </script>
+    <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2">
+        @if (session('toast'))
+            <x-dashboard.toast :type="session('toast.type')" :message="session('toast.message')" />
+        @endif
     </div>
 
     <script>
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('toastContainer', () => ({
-                toasts: [],
-                addToast(type, message) {
-                    this.toasts.push({
-                        id: Date.now(),
-                        type,
-                        message
-                    });
-                    setTimeout(() => {
-                        this.toasts = this.toasts.filter(t => t.id !== this.toasts[0].id);
-                    }, 5000);
-                }
-            }));
-        });
-
         document.addEventListener('DOMContentLoaded', () => {
             window.addEventListener('toast', event => {
-                const toastContainer = document.querySelector('#toast-container').__x.$data;
-                toastContainer.addToast(event.detail.type, event.detail.message);
+                const toastContainer = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.innerHTML = `
+                    <div class="flex items-center gap-3 rounded-lg border p-4 shadow-lg bg-green-50 text-green-800">
+                        <span>${event.detail.message}</span>
+                    </div>
+                `;
+                toastContainer.appendChild(toast);
+                setTimeout(() => toast.remove(), 5000);
             });
         });
     </script>
