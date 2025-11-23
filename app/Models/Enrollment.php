@@ -55,7 +55,7 @@ class Enrollment extends Model
         'height' => 'decimal:2',
         'weight' => 'decimal:2',
         'agreed_to_terms' => 'boolean',
-        'submitted_at' => 'datetime',
+        'dob' => 'date',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
