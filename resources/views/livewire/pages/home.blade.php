@@ -105,10 +105,10 @@
                 @php
                 // Gallery items with random grid sizes (using col-span and row-span classes)
                 $galleryItems = [
-                ['image' => 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&h=400&fit=crop', 'alt' => 'Football Training', 'category' => 'Training', 'size' => 'lg', 'cols' => 'lg:col-span-2', 'rows' => 'lg:row-span-2'],
-                ['image' => 'https://images.unsplash.com/photo-1430549387789-4c1017266635?w=400&h=400&fit=crop', 'alt' => 'Team Spirit', 'category' => 'Team', 'size' => 'md', 'cols' => '', 'rows' => ''],
-                ['image' => 'https://images.unsplash.com/photo-1489749798305-4fea3ba63d60?w=400&h=400&fit=crop', 'alt' => 'Youth Football', 'category' => 'Youth', 'size' => 'md', 'cols' => '', 'rows' => ''],
-                ['image' => 'https://images.unsplash.com/photo-1517148814924-adebbc3be195?w=400&h=600&fit=crop', 'alt' => 'Training Drill', 'category' => 'Training', 'size' => 'lg', 'cols' => 'lg:col-span-1', 'rows' => 'lg:row-span-2'],
+                ['image' => 'hero-training.jpg', 'alt' => 'Football Training', 'category' => 'Training', 'size' => 'lg', 'cols' => 'lg:col-span-2', 'rows' => 'lg:row-span-2'],
+                ['image' => 'marathon.png', 'alt' => 'Team Spirit', 'category' => 'Team', 'size' => 'md', 'cols' => '', 'rows' => ''],
+                ['image' => 'players-training.png', 'alt' => 'Youth Football', 'category' => 'Youth', 'size' => 'md', 'cols' => '', 'rows' => ''],
+                ['image' => 'training-ground.jpg', 'alt' => 'Training Drill', 'category' => 'Training', 'size' => 'lg', 'cols' => 'lg:col-span-1', 'rows' => 'lg:row-span-2'],
                 ['image' => 'https://images.unsplash.com/photo-1552134680-7aae4d00a0f9?w=600&h=400&fit=crop', 'alt' => 'Match Day', 'category' => 'Match', 'size' => 'lg', 'cols' => 'lg:col-span-2', 'rows' => ''],
                 ['image' => 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400&h=400&fit=crop', 'alt' => 'Player Focus', 'category' => 'Training', 'size' => 'md', 'cols' => '', 'rows' => ''],
                 ['image' => 'https://images.unsplash.com/photo-1505666287802-931dc604a649?w=400&h=400&fit=crop', 'alt' => 'Goal Celebration', 'category' => 'Match', 'size' => 'md', 'cols' => '', 'rows' => ''],
@@ -121,7 +121,7 @@
                     @style("animation-delay: {{ ($index % 4) * 0.1 }}s")>
                     <!-- Image -->
                     <img
-                        src="{{ $item['image'] }}"
+                        src="{{ asset('images/' . $item['image']) }}"
                         alt="{{ $item['alt'] }}"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
 

@@ -1,4 +1,11 @@
 <div class="min-h-screen pt-20 pb-16 bg-muted">
+    <!-- Toast Container -->
+    <div class="fixed top-20 right-4 z-50 space-y-4" id="toast-container">
+        @if (session()->has('enrollment_success'))
+            <x-dashboard.toast type="success" message="{{ session('enrollment_success') }}" />
+        @endif
+    </div>
+
     <div class="container mt-8 mx-auto px-4">
         <!-- Header -->
         <div class="text-center mb-12 animate-fade-in">
@@ -224,13 +231,13 @@
                         </select>
                         @error('stateOfOrigin') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
-                    <div wire:ignore>
+                    <div>
                         <label class="block mb-2 font-medium text-sm">Local Government Area <span class="text-red-500">*</span></label>
-                        <select wire:model="lga" name="lga" id="lga" class="select-lga w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary bg-background" data-state="0" required>
+                        <select wire:model.live="lga" name="lga" id="lga" class="select-lga w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary bg-background" data-state="0" required>
                             <option value="">...Select LGA...</option>
                         </select>
+                        @error('lga') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
-                    @error('lga') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -466,6 +473,34 @@
 </div>
 </div>
 
+<!-- Toast Container -->
+<div class="fixed top-20 right-4 z-50 space-y-4" id="toast-container">
+    @if (session()->has('enrollment_success'))
+        <x-dashboard.toast type="success" message="{{ session('enrollment_success') }}" />
+    @endif
+</div>
+
 @push('scripts')
 <script src="{{ asset('js/state-capital.js') }}"></script>
-@endpush
+<script>
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('enrollment-success', (event) => {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'flex items-center gap-3 rounded-lg border p-4 shadow-lg bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-400 border-green-200 dark:border-green-800 animate-slide-in';
+            toast.innerHTML = `
+                <div class="flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div class="flex-1">
+                    <p class="text-sm font-medium">${event[0].message || 'Enrollment submitted successfully!'}</p>
+                </div>
+                <button type="button" onclick="this.parentElement.remove()" class="flex-shrink-0 rounded-lg p-1 hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            `;
+            container.

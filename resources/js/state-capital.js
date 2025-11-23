@@ -901,8 +901,16 @@ const initializeStateSelection = () => {
             lgaSelect.appendChild(opt);
         });
 
-        // Trigger Livewire to re-initialize after options are added
+        // Manually trigger Livewire update for LGA field
         if (window.Livewire) {
+            // Reset the LGA value first
+            const component = Livewire.find(
+                lgaSelect.closest("[wire\\:id]").getAttribute("wire:id")
+            );
+            if (component) {
+                component.set("lga", "");
+            }
+            // Dispatch events to notify Livewire
             lgaSelect.dispatchEvent(new Event("input", { bubbles: true }));
             lgaSelect.dispatchEvent(new Event("change", { bubbles: true }));
         }
@@ -939,10 +947,21 @@ const initializeStateSelection = () => {
         }
     });
 
-    // Also attach change listener to LGA select to notify Livewire
+    // Also attach change listener to LGA select to manually update Livewire
     lgaSelects.forEach((lgaSelect) => {
-        lgaSelect.addEventListener("change", () => {
+        lgaSelect.addEventListener("change", (e) => {
             if (window.Livewire) {
+                // Find the Livewire component and manually set the value
+                const wireId = lgaSelect.closest("[wire\\:id]");
+                if (wireId) {
+                    const component = Livewire.find(
+                        wireId.getAttribute("wire:id")
+                    );
+                    if (component) {
+                        component.set("lga", e.target.value);
+                    }
+                }
+                // Also dispatch standard events for compatibility
                 lgaSelect.dispatchEvent(new Event("input", { bubbles: true }));
             }
         });

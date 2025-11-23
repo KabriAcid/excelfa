@@ -179,8 +179,8 @@ class Register extends Component
             $this->showSuccessModal = true;
             $this->isSubmitting = false;
 
-            // Reset form after 3 seconds
-            $this->dispatch('success-submitted');
+            // Dispatch toast notification
+            $this->dispatch('enrollment-success', ['message' => 'Your enrollment has been submitted successfully! Check your email for confirmation.']);
         } catch (\Exception $e) {
             logger()->error('Enrollment submission failed', ['error' => $e->getMessage()]);
             $this->addError('submit', 'An error occurred while processing your application. Please try again.');
