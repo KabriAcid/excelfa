@@ -235,6 +235,7 @@
                         <label class="block mb-2 font-medium text-sm">Local Government Area <span class="text-red-500">*</span></label>
                         <select wire:model.live="lga" name="lga" id="lga" class="select-lga w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary bg-background" data-state="0" required>
                             <option value="">...Select LGA...</option>
+                            <option value="jalingo">...jala...</option>
                         </select>
                         @error('lga') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
@@ -472,12 +473,6 @@
 @endif
 </div>
 </div>
-
-<!-- Toast Container -->
-<div class="fixed top-20 right-4 z-50 space-y-4" id="toast-container">
-    @if (session()->has('enrollment_success'))
-        <x-dashboard.toast type="success" message="{{ session('enrollment_success') }}" />
-    @endif
 </div>
 
 @push('scripts')
@@ -503,4 +498,13 @@
                     </svg>
                 </button>
             `;
-            container.
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.transition = 'opacity 0.3s ease-out';
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 5000);
+        });
+    });
+</script>
+@endpush
